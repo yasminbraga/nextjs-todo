@@ -1,95 +1,131 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import AddTodo from "./components/AddTodo";
+import styles from "./page.module.scss";
+
+import { uuid } from "uuidv4";
+import IconMoon from "../../public/assets/icon-moon.svg";
+import IconSun from "../../public/assets/icon-sun.svg";
+import Footer from "./components/Footer";
+import ListTasks from "./components/ListTasks";
+import { useTheme } from "./context/ThemeContext";
+
+export interface TaskType {
+  id: string;
+  name: string;
+  isCompleted: boolean;
+}
 
 export default function Home() {
+  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const [filter, setFilter] = useState<string>("ALL");
+  const { isDarkMode, toggleTheme } = useTheme();
+
+  const addTask = (task: TaskType) => {
+    setTasks([...tasks, task]);
+  };
+
+  const markAsCompleted = (id: string) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
+      )
+    );
+  };
+
+  const deleteTask = (id: string) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const deleteCompleted = () => {
+    setTasks(tasks.filter((task) => !task.isCompleted));
+  };
+
+  const itemsLeft = tasks.filter((task) => !task.isCompleted).length;
+
+  const handleFilter = (status: string) => {
+    setFilter(status);
+  };
+
+  let filteredTasks;
+  if (filter === "ACTIVE") {
+    filteredTasks = tasks.filter((task) => !task.isCompleted);
+  } else if (filter === "COMPLETED") {
+    filteredTasks = tasks.filter((task) => task.isCompleted);
+  } else {
+    filteredTasks = tasks;
+  }
+
+  useEffect(() => {
+    setTasks([
+      { id: uuid(), name: "Natação", isCompleted: false },
+      { id: uuid(), name: "Correr", isCompleted: false },
+      { id: uuid(), name: "Estudar React", isCompleted: true },
+    ]);
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <main className={styles.mainContainer}>
+      <section className={styles.mainContainer__header}>
+        <h1>todo</h1>
+        <button
+          onClick={toggleTheme}
+          className={styles.mainContainer__themeBtn}
+        >
+          {isDarkMode ? (
+            <Image src={IconSun} alt="sun" />
+          ) : (
+            <Image src={IconMoon} alt="moon" />
+          )}
+        </button>
+      </section>
+      <AddTodo addTask={addTask} />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      <div className={styles.mainContainer__bg}>
+        <ListTasks
+          tasks={filteredTasks}
+          setTasks={setTasks}
+          markAsCompleted={markAsCompleted}
+          deleteTask={deleteTask}
         />
+        {tasks.length > 0 && (
+          <Footer
+            itemsLeft={itemsLeft}
+            handleFilter={handleFilter}
+            deleteCompleted={deleteCompleted}
+            filter={filter}
+          />
+        )}
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      {tasks.length > 0 && (
+        <div className={styles.mainContainer__responsiveButtons}>
+          <button
+            className={`${styles.mainContainer__btn} ${
+              filter === "ALL" ? styles.mainContainer__btnActive : ""
+            }`}
+            onClick={() => handleFilter("ALL")}
+          >
+            All
+          </button>
+          <button
+            className={`${styles.mainContainer__btn} ${
+              filter === "ACTIVE" ? styles.mainContainer__btnActive : ""
+            }`}
+            onClick={() => handleFilter("ACTIVE")}
+          >
+            Active
+          </button>
+          <button
+            className={`${styles.mainContainer__btn} ${
+              filter === "COMPLETED" ? styles.mainContainer__btnActive : ""
+            }`}
+            onClick={() => handleFilter("COMPLETED")}
+          >
+            Completed
+          </button>
+        </div>
+      )}
     </main>
-  )
+  );
 }

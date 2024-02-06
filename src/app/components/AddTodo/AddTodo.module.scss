@@ -1,0 +1,23 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.formContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__input {
+    border: none;
+    padding: 1.2rem;
+    border-radius: 0.2rem;
+    width: 100%;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--highlight-text-color);
+    background-color: var(--card-color);
+
+    &::placeholder {
+      color: $dark-grayish-blue;
+    }
+  }
+}
