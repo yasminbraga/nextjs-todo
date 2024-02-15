@@ -17,6 +17,8 @@
   --highlight-text-color: #{$very-dark-grayish-blue};
 
   --line-color: #{$very-light-grayish-blue};
+  --line-through: #{$light-grayish-blue};
+  --box-shadow-color: rgba(100, 100, 111, 0.2);
 
   &.dark {
     --background-image-mobile: url("/assets/bg-mobile-dark.jpg");
@@ -28,6 +30,8 @@
     --highlight-text-color: #{$light-grayish-blue-234};
 
     --line-color: #{$very-dark-grayish-blue-237};
+    --line-through: #{$very-dark-grayish-blue-233};
+    --box-shadow-color: #{$very-dark-blue};
   }
 }
 

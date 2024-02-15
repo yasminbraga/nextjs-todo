@@ -1,36 +1,69 @@
+# Frontend Mentor - Todo app solution
+
+This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW).
+
+## Table of contents
+
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Add new todos to the list
+- Mark todos as complete
+- Delete todos from the list
+- Filter by all/active/complete todos
+- Clear all completed todos
+- Toggle light and dark mode
+- **Bonus**: Drag and drop to reorder items on the list
+
+### Screenshot
+
+![](./screenshot.gif)
+
+### Links
+
+- Solution URL: [Frontend Mentor solution](https://your-solution-url.com)
+- Live Site URL: [Todo app Vercel](https://nextjs-todo-nine-omega.vercel.app/)
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- Mobile-first workflow
+- [Next.js](https://nextjs.org/) - React framework
+- Sass with BEM - For styles
+- Tests with jest and testing library
+- @hello-pangea/dnd - Drag and drop library
+
+### Continued development
+
+This was my first project with unity tests. For improvement I think some test techniques are missing. Also some styles may be different, for example the add todo has a checkbox input and my project don't.
+
+### Useful resources
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+- [Criando lista Drag and Drop com React JS 🧨](https://www.youtube.com/watch?v=0IAJjjxMFPo) - This video tutorial helped me with the drag and drop library.
+- [How to Implement Dark Mode in React/Next.js Using Sass](https://www.youtube.com/watch?v=N0-__jFOW64) - This is a video tutorial that helped me with the dark/light mode with sass.
+- [How to Implement Dark Mode in React/Next.js Using Sass](https://amourycodes.com/guides/a-simple-guide-to-getting-started-with-testing-your-react-components/71d7043798df4b9187730676ca6c4103) - This is an article that guide me through testing concepts.
 
-First, run the development server:
+## Author
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Frontend Mentor - [@yasminbraga](https://www.frontendmentor.io/profile/yasminbraga)

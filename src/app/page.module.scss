@@ -11,7 +11,7 @@
   width: 100%;
 
   @media only screen and (min-width: 768px) {
-    width: 500px;
+    width: 530px;
   }
 
   &__themeBtn {
@@ -24,6 +24,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    margin-top: 2rem;
 
     h1 {
       color: $very-light-gray;
@@ -35,11 +36,10 @@
 
   &__bg {
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 1.4rem;
     overflow: hidden;
     border-radius: 0.2rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
+    box-shadow: var(--box-shadow-color) 0px 7px 29px 0px;
     @media only screen and (min-width: 768px) {
     }
   }
